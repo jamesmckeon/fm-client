@@ -9,9 +9,15 @@ const r = require("request");
 const https = require("https");
 const rp = require("request-promise");
 
+//require('ssl-root-cas').inject();
+
 require('request-debug')(rp, function(type, data, r) {
     console.log(type + ": " + r.host);
 });
+/* 
+process.env.HTTPS_PROXY="http://127.0.0.1:8888";
+process.env.HTTP_PROXY="http://127.0.0.1:8888";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED=0; */
 
 const port = process.env.PORT || 8080;
 
@@ -31,21 +37,9 @@ app.use('/store', router);
 app.get('/store/authenticationState', function(req, res) {
 
     return krogerClient.checkAuthentication().then(function(response) {
-        res.json(response);
+        res.json(JSON.parse(response));
     })
 });
-
-app.get('/store/google', function(req, res) {
-
-    return rp('https://www.google.com')
-        .then(function(htmlString) {
-            res.send(htmlString);
-        })
-        .catch(function(err) {
-            res.status(500).send();
-        });
-
-})
 
 app.listen(port);
 
@@ -94,20 +88,19 @@ function httpsClient(baseUrl, cookieJar) {
     function getOptions(url) {
         return {
             url: url,
-            // simple: false,
-            //resolveWithFullResponse: true,
+            simple: true,
+            resolveWithFullResponse: true,
             baseUrl: baseUrl,
             method: "get",
-            jar: true
-                //gzip: true,
-                //jar: cookieJar,
-                //timeout: 15000
-                //,
-                // headers: {
-                //    Accept: "application/json, text/plain, */*",
-                //     Origin: baseUrl,
-                //     "Content-Type": "application/json;charset=UTF-8"
-                // }
+            jar: true,
+  gzip: true,
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Accept-Encoding": "gzip, deflate, br",
+                    Origin: baseUrl,
+                  
+                     "Connection": "keep-alive"
+                 }
         }
     }
 

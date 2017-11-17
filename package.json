@@ -1,25 +1,25 @@
 {
-    "name": "grocery-client",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "start": "nodemon --debug server.js",
-    "dependencies": {
-        "body-parser": "1.17.2",
-        "compression": "1.7.0",
-        "express": "4.15.4",
-        "https": "1.0.0",
-        "lodash": "^4.17.4",
-        "moment": "2.19.1",
-        "request": "2.81.0",
-        "request-promise": "4.2.1"
-    },
-    "author": "jim mckeon",
-    "license": "ISC",
-    "devDependencies": {
-        "request-debug": "0.2.0"
-    }
+  "name": "grocery-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "nodemon --debug server.js"
+  },
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "compression": "1.7.0",
+    "express": "4.15.4",
+    "https": "1.0.0",
+    "lodash": "^4.17.4",
+    "moment": "2.19.1",
+    "request": "2.81.0",
+    "request-promise": "4.2.1"
+  },
+  "author": "jim mckeon",
+  "license": "ISC",
+  "devDependencies": {
+    "request-debug": "0.2.0"
+  }
 }
